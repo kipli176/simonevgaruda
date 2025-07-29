@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Salin requirements.txt dan app.py ke dalam container
 COPY requirements.txt .
-COPY monevunsud.py .
+COPY . /app
 
 # Install dependensi Python
 RUN pip install --no-cache-dir -r requirements.txt
