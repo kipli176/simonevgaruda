@@ -1,0 +1,129 @@
+<div class="box box-solid">
+  <div class="box-body table-responsive">
+    <table id="ProGiatXtd1" class="table table-bordered table-condensed table-striped tree">
+      <thead>
+        <tr class="bg-c2">
+          <th class="text-center">_</th>
+          <th class="text-center">No</th>
+          <th class="text-center">Nomen</th>
+          <th class="text-center">Uraian</th>
+          <th class="text-center">Pagu</th>
+          <th class="text-center">Realisasi</th>
+          <th class="text-center">%</th>
+        </tr>
+      </thead>
+      <tbody>
+        {# Baris RO (tidak collapsible) #}
+        <tr>
+          <td></td>
+          <td>1</td>
+          <td>RO</td>
+          <td><strong>[{{ ro.kode }}] {{ ro.uraian }}</strong></td>
+          <td align="right">{{ "{:,.0f}".format(ro.pagu) }}</td>
+          <td align="right">{{ "{:,.0f}".format(ro.realisasi) }}</td>
+          <td align="right">{{ "{:.2f}".format(ro.persen) }}</td>
+        </tr>
+
+        {# Baris Komponen dan Sub‑komponen #}
+        {% for komp in grouped %}
+          {% set idx = loop.index %}
+          <tr class="treegrid-{{ idx }}">
+            <td></td>
+            <td>1.{{ idx }}</td>
+            <td>Komponen</td>
+            <td>[{{ komp.kode }}] {{ komp.uraian }}</td>
+            <td align="right">{{ "{:,.0f}".format(komp.pagu) }}</td>
+            <td align="right">{{ "{:,.0f}".format(komp.realisasi) }}</td>
+            <td align="right">{{ "{:.2f}".format(komp.persen) }}</td>
+          </tr>
+          {% for sub in komp.sub %}
+            {% set jdx = loop.index %}
+            <tr class="treegrid-{{ idx }}-{{ jdx }} treegrid-parent-{{ idx }}">
+              <td></td>
+              <td>1.{{ idx }}.{{ jdx }}</td>
+              <td>Sub Komponen</td>
+              <td>[{{ sub.kode }}] {{ sub.uraian }}</td>
+              <td align="right">{{ "{:,.0f}".format(sub.pagu) }}</td>
+              <td align="right">{{ "{:,.0f}".format(sub.realisasi) }}</td>
+              <td align="right">{{ "{:.2f}".format(sub.persen) }}</td>
+            </tr>
+          {% endfor %}
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr class="bg-c2">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>TOTAL</strong></td>
+          <td align="right"><strong>{{ "{:,.0f}".format(ro.pagu) }}</strong></td>
+          <td align="right"><strong>{{ "{:,.0f}".format(ro.realisasi) }}</strong></td>
+          <td align="right"><strong>{{ "{:.2f}".format(ro.persen) }}</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+  
+  <!-- Include plugin -->
+  <link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/plugins/treegrid/jquery.treegrid.css">
+  <script src="https://molk.kemdikbud.go.id/0komponen/plugins/treegrid/jquery.treegrid.min.js"></script>
+  
+<script type="text/javascript">	
+	$(document).ready(function() {
+        $('.tree').treegrid({
+          treeColumn: 0,
+		  initialState: 'collapsed'
+        });
+var table = $('#ProGiatXtd1').DataTable({
+	"paging": false,
+	"lengthChange": true,
+	"searching": true,
+	"ordering": false,
+	"info": false,
+	"autoWidth": true,
+	"button": false,
+	"lengthMenu": [[ 5, 10, 25, 50, 100, -1], ["5", "10", "25", "50", "100", "All"]],
+	"pageLength":-1,
+	"dom": '<"top text-center"BLipf>rt<"bottom"><"clear">',
+	
+	fixedHeader: true,
+    orderCellsTop: true,
+   	fixedHeader: {
+        headerOffset: 50
+    },
+	buttons: [
+		'colvis', {
+		extend: 'collection',
+		text: 'Export',
+		buttons: [
+					{
+						extend: 'copyHtml5',
+						exportOptions: {
+							columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9]
+						}
+					},
+					{
+						extend: 'excelHtml5',
+						exportOptions: {
+							columns: [ 1, 2, 3, 4, 5, 6, 7, 8, 9],
+							format: {
+								 body: function (data, row, column, node ) {
+											return column === 1 || column === 5 || column === 6 || column === 7 || column === 8 || column === 9 || column === 4 ? "\0" + data : data;
+											}
+							}
+						}
+					},
+						],
+	}]
+    });
+ 
+$('.dataTables_filter').addClass('pull-right');
+$('.dataTables_paginate').addClass('pull-left');	
+		
+		
+	
+      });
+	
+</script>

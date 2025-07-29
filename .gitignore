@@ -1,0 +1,5 @@
+*.ipynb
+*.xlsx
+tex.py
+templates/index.html
+*.zip

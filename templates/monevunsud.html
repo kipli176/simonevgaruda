@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" type="image/png" href="/static/simonevgaruda.webp">
+	<title>SIMONEV GARUDA 2025</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.5 -->
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/bootstrap.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/font-awesome.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/datatables.min.css">
+	<!-- Select2 -->
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/select2.min.css" />
+	<!-- Theme style -->
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/ALTE.css">
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/css/skins.css">
+	<!-- jQuery 2.1.4 -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/jquery-3.3.1.js"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/jquery-ui.min.js" type="text/javascript"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.4 JS -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/bootstrap.min.js" type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/app.min.js" type="text/javascript"></script>
+	<!-- select 2 -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/select2.min.js"></script>
+	<!-- DataTables -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/datatables.min.js"></script>
+	<!-- highchart -->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/hchart/highcharts.js"></script>
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/hchart/exporting.js"></script>
+	<!-- Scroll Table-->
+	<script src="https://molk.kemdikbud.go.id/0komponen/js/freeze-table.js"></script>
+	
+	<link rel="stylesheet" href="https://molk.kemdikbud.go.id/0komponen/plugins/treegrid/jquery.treegrid.css">
+	<script src="https://molk.kemdikbud.go.id/0komponen/plugins/treegrid/jquery.treegrid.min.js"></script>
+</head>
+
+
+<div class="modal fade" id="lihatpengguna" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- File Button -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
+				<!-- File Button -->
+				<h4 class="modal-title" id="myModalLabel">Biodata Pengguna</h4>
+			</div>
+			<div class="modal-body">
+				<fieldset>
+					<div class="form-group">
+						<label for="kd_stkr" class="col-sm-4 control-label">Kode Organisasi</label>
+						<div class="col-sm-8">
+							<input class="form-control form-group" name="kd_stkr" type="text" value="17.00.677558"
+								disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nm_unit" class="col-sm-4 control-label">Nama Unit Kerja</label>
+						<div class="col-sm-8">
+							<input class="form-control form-group" name="nm_unit" type="text"
+								value="UNIVERSITAS JENDERAL SUDIRMAN" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="usr_nm" class="col-sm-4 control-label">Nama Operator</label>
+						<div class="col-sm-8">
+							<input class="form-control form-group" name="usr_name" type="text" value="Op. Simkeu LRA"
+								disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="no_hp" class="col-sm-4 control-label">No HP</label>
+						<div class="col-sm-8">
+							<input class="form-control form-group" name="no_hp" type="text" value="081xxxxxxx" disabled>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label">Email</label>
+						<div class="col-sm-8">
+							<input class="form-control form-group" name="email" type="text"
+								value="email@kemdikbud.go.id" disabled>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="updatepengguna" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- File Button -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
+				<!-- File Button -->
+				<h4 class="modal-title" id="myModalLabel">Update Info Satker</h4>
+			</div>
+			<div class="modal-body">
+				<form action="?op=Y2" method="post">
+					<fieldset>
+						<div class="form-group">
+							<label for="kd_stkr" class="col-sm-4 control-label">Kode Organisasi</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" name="kd_stkr" type="text" value="1700677558"
+									disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="nm_unit" class="col-sm-4 control-label">Nama Unit Kerja</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" name="nm_unit" type="text"
+									value="UNIVERSITAS JENDERAL SUDIRMAN" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="usr_nm" class="col-sm-4 control-label">Nama Operator</label>
+							<div class="col-sm-8">
+								<input type="hidden" name="iduser" value="806">
+								<input class="form-control form-group" placeholder="Masukkan Nama Pengguna"
+									name="usr_name" type="text" value="Op. Simkeu LRA" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="no_hp" class="col-sm-4 control-label">No HP</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group " name="no_hp" type="text" value="081xxxxxxx"
+									required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="col-sm-4 control-label">Email</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" name="email" type="email"
+									value="email@kemdikbud.go.id" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2 pull-right">
+								<button type="submit" class="btn btn-primary">Ubah</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<div class="text-left">
+					CATATAN:<br>
+					Alamat Email digunakan untuk mereset password.
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="ubahpass" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!-- File Button -->
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">×</span></button>
+				<!-- File Button -->
+				<h4 class="modal-title" id="myModalLabel">Ubah Password</h4>
+			</div>
+			<div class="modal-body">
+				<form action="?op=Y1" method="post">
+					<fieldset>
+						<div class="form-group">
+							<label for="login" class="col-sm-4 control-label">Password Lama</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" placeholder="Masukkan Password Lama Anda"
+									name="ps_lama" type="password" autofocus required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-4 control-label">Password Baru</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" placeholder="Masukkan Password Baru Anda"
+									name="ps_baru" type="password" required>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="password" class="col-sm-4 control-label">Konfirmasi Password</label>
+							<div class="col-sm-8">
+								<input class="form-control form-group" placeholder="Konfirm Password Baru Anda"
+									name="ps_konfirm" type="password" required>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-2 pull-right">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<body class="hold-transition skin-blue sidebar-collapse layout-top-nav">
+	<div class="modal fade" id="seModal" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span
+							aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="ModJudl"></h4>
+				</div>
+				<div class="modal-body" id="ModBodi">
+				</div>
+				<div class="modal-footer" id="modKaki">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function setModalBox(title, content, footer, ukur) {
+			//alert(content);
+			document.getElementById('ModJudl').innerHTML = title;
+			document.getElementById('ModBodi').innerHTML = content;
+			document.getElementById('modKaki').innerHTML = footer;
+			//ukuran
+			//var ukuran = 'xl10';
+			var ukuran = ukur;
+			if (ukuran == 'xl10') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-xl10');
+			}
+			if (ukuran == 'xl9') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-xl9');
+			}
+			if (ukuran == 'xl8') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-xl8');
+			}
+			if (ukuran == 'lg2') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-xl');
+			}
+			if (ukuran == 'lg') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-lg');
+			}
+			if (ukuran == 'reg') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog');
+			}
+			if (ukuran == 'sm') {
+				$('#seModal').find('.modal-dialog').attr('class', 'modal-dialog modal-sm');
+			}
+		}
+	</script>
+	<!-- main body -->
+	<div class="wrapper">
+		<header class="main-header">
+			<nav class="navbar navbar-fixed-top" role="navigation">
+				<div class="navbar-inner">
+					<!--<div class="container">-->
+					<div class="navbar-header">
+						<a href="?op=1" class="navbar-brand" style="font-size: 25px;">
+							<b>SIMONEV GARUDA</b> 2025</a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar-collapse">
+							📋
+						</button>
+					</div>
+					<!-- <div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<li class="dropdown notifications-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<img src="https://molk.kemdikbud.go.id/0komponen/team.png" alt="User Image"
+										style="float: left; width: 25px; height: 25px; margin-right: 10px; margin-top: -2px;"
+										)>
+									<span class="hidden-xs">Op. Simkeu LRA</span>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" style="width: 180px;">
+									<li>
+										<ul class="menu">
+											<li><a href="#" data-toggle="modal" data-target="#lihatpengguna"><i
+														class="fa fa-user text-blue"></i> Lihat Profil</a></li>
+											<li><a href="#" data-toggle="modal" data-target="#ubahpass"><i
+														class="fa fa-unlock-alt text-blue"></i> Ubah Password</a></li>
+											<li><a href="#" data-toggle="modal" data-target="#updatepengguna"><i
+														class="fa fa-edit text-blue"></i> Ubah Profil</a></li>
+
+											<li><a href="?op=X"><i class="fa fa-sign-out text-yellow"></i> Keluar</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div> -->
+					<!--</div><!-- /.container -->
+				</div>
+			</nav>
+		</header>
+		<div class="content-wrapper"
+			style="min-height: 194px; padding-top: 55px; padding-bottom: 35px; padding-left: 5px; padding-right: 5px;"><section class="content-header" style="text-align: center; padding-top: 5px;">
+				<h1>
+				  SIMONEV GARUDA
+				  {% if selected_unit %}
+				  UNIT {{ selected_unit }}
+				  {% endif %}
+					<br>
+					<small>UNIVERSITAS JENDERAL SUDIRMAN T.A 2025</small>
+				</h1>
+			  </section>
+			  
+			<section class="content">
+				<div class="row">
+					<div class="clearfix">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="info-box">
+									  <span class="info-box-icon bg-green">
+										💰
+									  </span>
+									  <div class="info-box-content">
+										<span class="info-box-text">Realisasi Anggaran Belanja (SIMAPAN)</span>
+										<span class="info-box-number">
+										  {{ "{:,.0f}".format(widget_belanja.realisasi) }} 
+										  ({{ "{:.2f}".format(widget_belanja.persen) }}%)
+										</span>
+										<div class="progress-sm">
+										  <div class="progress-bar progress-bar-striped bg-green"
+											style="width: {{ "%.2f"|format(widget_belanja.persen) }}%"></div>
+										</div>
+										<span class="progress-description">
+										  Pagu Belanja: Rp {{ "{:,.0f}".format(widget_belanja.pagu) }}
+										</span>
+									  </div>
+									</div>
+								  </div>
+								  <div class="col-lg-4">
+									<div class="info-box">
+									  <span class="info-box-icon bg-orange">
+										⭐
+									  </span>
+									  <div class="info-box-content">
+										<span class="info-box-text">Realisasi Tertinggi (SIMAPAN)</span>
+										<span class="info-box-number">{{ "{:,.0f}".format(top_uraian_nilai) }}</span>
+										<div class="progress-sm">
+										  <div class="progress-bar progress-bar-striped bg-orange" style="width: 100%"></div>
+										</div>
+										<span class="progress-description">
+										  {{ top_uraian_nama }}
+										</span>
+									  </div>
+									</div>
+								  </div>
+								  
+								  <div class="col-lg-4">
+									<div class="info-box">
+									  <span class="info-box-icon bg-blue">
+										🗂️
+									  </span>
+									  <div class="info-box-content">
+										<span class="info-box-text">Struktur Program</span>
+										<span class="info-box-number">
+										  {{ widget_summary.program }} Program /
+										  {{ widget_summary.kegiatan }} Kegiatan
+										</span>
+										<div class="progress-sm">
+										  <div class="progress-bar progress-bar-striped bg-blue" style="width: 100%"></div>
+										</div>
+										<span class="progress-description">
+										  Dari Data Anggaran Saat Ini
+										</span>
+									  </div>
+									</div>
+								  </div>
+																	
+							</div>
+						</div>
+					</div>
+
+					<div class="clearfix">
+						<div class="nav-tabs-custom">
+							<ul class="nav nav-tabs">
+								<li class="bg-warning active"><a href="#tab_main" data-toggle="tab">Grafik & Realisasi
+										Belanja</a></li> 
+
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab_main">
+									<div class="row">
+										<div class="col-lg-6">
+ <!-- FILTER UNIT -->
+<!-- <form class="form-inline" method="get" style="margin-bottom:1rem;">
+	<label for="unit-filter">Filter Unit:</label>
+	<select id="unit-filter" name="unit" class="form-control"
+			onchange="this.form.submit()">
+	  <option value="">— Semua Unit —</option>
+	  {% for u in units %}
+		<option value="{{ u }}"
+		  {% if u == selected_unit %}selected{% endif %}>
+		  {{ u }}
+		</option>
+	  {% endfor %}
+	</select>
+	<a href="/" class="btn btn-default">Reset</a>
+  </form> -->
+											<div class="box box-solid no-border">
+												<div class="box-body border-radius-none no-padding">
+												<div class="box-body">
+												  <div id="chartJenisBelanja" style="height: 396px; margin: 0 auto" class="chart"></div>
+												</div><!-- /.box-body -->
+												</div>
+											  </div>
+											  
+											  <script>
+												$(document).ready(function () {
+												  Highcharts.setOptions({ lang: { thousandsSep: '.' } });
+												  Highcharts.chart('chartJenisBelanja', {
+													chart: { zoomType: 'xy' },
+													title: { text: 'Realisasi Anggaran per Jenis Belanja' },
+													xAxis: [{ categories: {{ chart_belanja.labels | tojson }}, crosshair: true }],
+													yAxis: [{
+													  title: { text: 'Anggaran (Rp)' },
+													  labels: { format: 'Rp{value:,.0f},-' }
+													}, {
+													  title: { text: 'Persen (%)' },
+													  labels: { format: '{value}%' },
+													  opposite: true,
+													  max: 100
+													}],
+													tooltip: { shared: true },
+													legend: {
+													  layout: 'horizontal',
+													  align: 'center',
+													  verticalAlign: 'bottom'
+													},
+													series: [{
+													  name: 'Pagu',
+													  type: 'column',
+													  color: '#d1d1d1',
+													  yAxis: 0,
+													  data: {{ chart_belanja.pagu | tojson }},
+													  tooltip: { valueSuffix: ',-' }
+													}, {
+													  name: 'Realisasi',
+													  type: 'column',
+													  color: '#7cb5ec',
+													  yAxis: 0,
+													  data: {{ chart_belanja.realisasi | tojson }},
+													  tooltip: { valueSuffix: ',-' }
+													}, {
+													  name: 'Realisasi (%)',
+													  type: 'spline',
+													  color: '#ff6600',
+													  yAxis: 1,
+													  data: {{ chart_belanja.persen | tojson }},
+													  tooltip: { valueSuffix: '%' }
+													}]
+												  });
+												});
+											  </script>
+											   
+											<div class="box box-solid">
+                                                <div class="box-header">
+                                                  <h3 class="box-title">Realisasi Per Jenis Belanja</h3>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body table-responsive no-padding">
+                                                  <table class="table table-bordered table-condensed table-striped">
+                                                    <thead>
+                                                      <tr class="bg-c2">
+                                                        <th class="text-center" style="vertical-align: middle">No</th>
+                                                        <th class="text-center" style="vertical-align: middle">Jenis Belanja</th>
+                                                        <th class="text-center" style="vertical-align: middle">Pagu</th>
+                                                        <th class="text-center" style="vertical-align: middle">Realisasi</th>
+                                                        <th class="text-center" style="vertical-align: middle">Persentase (%)</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      {% set total_pagu = 0 %}
+                                                      {% set total_real = 0 %}
+                                                      {% for row in jenis_belanja %}
+                                                      {% set total_pagu = total_pagu + row.PAGU %}
+                                                      {% set total_real = total_real + row.REALISASI %}
+                                                      <tr>
+                                                        <td style="padding-bottom: 1px; padding-top: 1px;">{{ loop.index }}</td>
+                                                        <td style="padding-bottom: 1px; padding-top: 1px;">{{ row.JENIS_BELANJA }}</td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;">{{ "{:,.0f}".format(row.PAGU) }}</td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;">{{ "{:,.0f}".format(row.REALISASI) }}</td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;">{{ "{:.2f}".format(row.PERSEN) }}</td>
+                                                      </tr>
+                                                      {% endfor %}
+                                                      <tr class="bg-c2">
+                                                        <td style="padding-bottom: 1px; padding-top: 1px;"><strong>&nbsp;</strong></td>
+                                                        <td style="padding-bottom: 1px; padding-top: 1px;"><strong>T O T A L</strong></td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;"><strong>{{ '{:,.0f}'.format(total_jenis_belanja.pagu) }}</strong></td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;"><strong>{{ '{:,.0f}'.format(total_jenis_belanja.realisasi) }}</strong></td>
+                                                        <td align="right" style="padding-bottom: 1px; padding-top: 1px;"><strong>{{ '{:.2f}'.format(total_jenis_belanja.persen) }}</strong></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+
+
+
+                                              
+										</div>
+										<div class="col-lg-6"><div class="box box-solid">
+											<div class="box-header">
+											  <h3 class="box-title">
+												{% if not selected_unit %}
+												  Realisasi Per Unit
+												{% else %}
+												  Realisasi Per Subunit
+												{% endif %}
+											  </h3>
+											</div><!-- /.box-header -->
+											<!-- buat area scrollable -->
+											<div class="box-body table-responsive no-padding"
+												 style="max-height: 385px; overflow-y: auto;">
+											  <table class="table table-bordered table-condensed table-striped">
+												<thead>
+												  <tr class="bg-c2">
+													<th class="text-center" style="vertical-align: middle">No</th>
+													<th class="text-center" style="vertical-align: middle">
+													  {% if not selected_unit %}Unit{% else %}Subunit{% endif %}
+													</th>
+													<th class="text-center" style="vertical-align: middle">Pagu</th>
+													<th class="text-center" style="vertical-align: middle">Realisasi</th>
+													<th class="text-center" style="vertical-align: middle">Persentase (%)</th>
+												  </tr>
+												</thead>
+												<tbody>
+												  {% set total_pagu = 0 %}
+												  {% set total_realisasi = 0 %}
+										  
+												  {% if not selected_unit %}
+													{# Loop per unit, nama clickable #}
+													{% for unit, pagu, real in units_summary %}
+													  {% set total_pagu = total_pagu + pagu %}
+													  {% set total_realisasi = total_realisasi + real %}
+													  <tr>
+														<td style="padding:1px;">{{ loop.index }}</td>
+														<td style="padding:1px;">
+														  <a href="?unit={{ unit }}">{{ unit }}</a>
+														</td>
+														<td align="right" style="padding:1px;">{{ "{:,.0f}".format(pagu) }}</td>
+														<td align="right" style="padding:1px;">{{ "{:,.0f}".format(real) }}</td>
+														<td align="right" style="padding:1px;">
+														  {{ "{:.2f}".format((real / pagu * 100) if pagu else 0) }}
+														</td>
+													  </tr>
+													{% endfor %}
+												  {% else %}
+													{# Loop per subunit, nama biasa #}
+													{% for sub, pagu, real in subunits_summary %}
+													  {% set total_pagu = total_pagu + pagu %}
+													  {% set total_realisasi = total_realisasi + real %}
+													  <tr>
+														<td style="padding:1px;">{{ loop.index }}</td>
+														<td style="padding:1px;">{{ sub }}</td>
+														<td align="right" style="padding:1px;">{{ "{:,.0f}".format(pagu) }}</td>
+														<td align="right" style="padding:1px;">{{ "{:,.0f}".format(real) }}</td>
+														<td align="right" style="padding:1px;">
+														  {{ "{:.2f}".format((real / pagu * 100) if pagu else 0) }}
+														</td>
+													  </tr>
+													{% endfor %}
+												  {% endif %}
+										  
+												  <tr class="bg-c2">
+													<td style="padding-bottom: 3px; padding-top: 3px;"><strong>&nbsp;</strong></td>
+													<td style="padding-bottom: 3px; padding-top: 3px;"><strong>T O T A L</strong></td>
+													<td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:,.0f}".format(total_sumber_dana.pagu) }}</strong></td>
+													<td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:,.0f}".format(total_sumber_dana.realisasi) }}</strong></td>
+													<td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:.2f}".format(total_sumber_dana.persen) }}</strong></td>
+												  </tr>
+												</tbody>
+											  </table>
+											</div><!-- /.box-body -->
+										  </div><!-- /.box -->
+										  
+											  
+
+
+											<div class="box box-solid">
+                                                <div class="box-header">
+                                                  <h3 class="box-title">Realisasi Per Sumber Dana</h3>
+                                                </div><!-- /.box-header -->
+                                                <div class="box-body table-responsive no-padding">
+                                                  <table class="table table-bordered table-condensed table-striped">
+                                                    <thead>
+                                                      <tr class="bg-c2">
+                                                        <th class="text-center" style="vertical-align: middle">No</th>
+                                                        <th class="text-center" style="vertical-align: middle">Sumber Dana</th>
+                                                        <th class="text-center" style="vertical-align: middle">Pagu</th>
+                                                        <th class="text-center" style="vertical-align: middle">Realisasi</th>
+                                                        <th class="text-center" style="vertical-align: middle">Persentase (%)</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      {% set total_pagu = 0 %}
+                                                      {% set total_real = 0 %}
+                                                      {% for row in sumber_dana %}
+                                                      {% set total_pagu = total_pagu + row.PAGU %}
+                                                      {% set total_real = total_real + row.REALISASI %}
+                                                      <tr>
+                                                        <td style="padding-bottom: 3px; padding-top: 3px;">{{ loop.index }}</td>
+                                                        <td style="padding-bottom: 3px; padding-top: 3px;">{{ row.SUMBER_DANA }}</td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;">{{ "{:,.0f}".format(row.PAGU) }}</td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;">{{ "{:,.0f}".format(row.REALISASI) }}</td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;">{{ "{:.2f}".format(row.PERSEN) }}</td>
+                                                      </tr>
+                                                      {% endfor %}
+                                                      <tr class="bg-c2">
+                                                        <td style="padding-bottom: 3px; padding-top: 3px;"><strong>&nbsp;</strong></td>
+                                                        <td style="padding-bottom: 3px; padding-top: 3px;"><strong>T O T A L</strong></td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:,.0f}".format(total_sumber_dana.pagu) }}</strong></td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:,.0f}".format(total_sumber_dana.realisasi) }}</strong></td>
+                                                        <td align="right" style="padding-bottom: 3px; padding-top: 3px;"><strong>{{ "{:.2f}".format(total_sumber_dana.persen) }}</strong></td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </div>
+                                            </div>
+                                              
+										</div>
+										<div class="col-lg-12">
+											<div class="box box-solid">
+												<div class="box-header">
+												  <h3 class="box-title">Realisasi Per Program - Kegiatan - KRO - RO</h3>
+												</div>
+												<div class="box-body table-responsive">
+												  <table id="ProGiat3" class="table table-bordered table-condensed">
+													<thead>
+													  <tr class="bg-c2">
+														<th class="text-center" style="vertical-align: middle">No</th>
+														<th class="text-center" style="vertical-align: middle">Nomen</th>
+														<th class="text-center" style="vertical-align: middle">Nama</th>
+														<th class="text-center" style="vertical-align: middle">Pagu</th>
+														<th class="text-center" style="vertical-align: middle">Realisasi</th>
+														<th class="text-center" style="vertical-align: middle">Persentase (%)</th>
+													  </tr>
+													</thead>
+													<tbody>
+														{% for row in program_kegiatan %}
+														  <tr class="
+															  {% if row.LEVEL == 'PROGRAM' %}bg-c3 text-black
+															  {% elif row.LEVEL == 'KEGIATAN' %}bg-c4 text-black
+															  {% elif row.LEVEL == 'KRO' %}bg-c6 text-black
+															  {% endif %}
+														  ">
+															<td>{{ row.NO }}</td>
+															<td>{{ row.LEVEL }}</td>
+															<td>
+															  {{ row.NAMA }}
+															  {% if row.LEVEL == 'RO' and not selected_unit %}
+															  <div class="pull-right">
+																<button onclick="open_container('{{ row.KODE }}')" class="btn btn-xs btn-info pull-right">🔍</button>
+																</div>	
+															  {% endif %}
+															</td>
+															<td align="right">{{ "{:,.0f}".format(row.PAGU) }}</td>
+															<td align="right">{{ "{:,.0f}".format(row.REALISASI) }}</td>
+															<td align="right">{{ "{:.2f}".format(row.PERSEN) }}</td>
+														  </tr>
+														{% endfor %}
+													  </tbody>
+													  
+													  
+													<tfoot>
+													  <tr class="bg-c2">
+														<td colspan="3" align="center"><strong>TOTAL</strong></td>
+														<td align="right"><strong>{{ "{:,.0f}".format(total_program_kegiatan.pagu) }}</strong></td>
+														<td align="right"><strong>{{ "{:,.0f}".format(total_program_kegiatan.realisasi) }}</strong></td>
+														<td align="right"><strong>{{ "{:.2f}".format(total_program_kegiatan.persen) }}</strong></td>
+													  </tr>
+													</tfoot>
+												  </table>
+												</div>
+											  </div>
+											  
+											  
+                                              
+											<script type="text/javascript">
+												function open_container(kdgo) {
+													var judul = '';
+													var content = '';
+													var footer = '';
+													judul += '<h4 class="modal-title">Detail <b>Rincian Output</b></h4>';
+													footer += '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
+													content = '<h1><div class="overlay text-center">♻️</div></h1>';
+													setModalBox(judul, content, footer, 'xl10');
+													$('#seModal').modal('show');
+													$.ajax({
+														type: 'GET',
+														url: "/detail_ro/" + kdgo,  // GANTI dari PHP ke Flask
+														success: function (html) {
+															$('#ModBodi').html(html)
+														},
+														error: function () {
+															alert('Error!');
+														}
+														});
+
+
+												}
+
+												$(document).ready(function () {
+													var table = $('#ProGiat3').DataTable({
+														"paging": false,
+														"lengthChange": true,
+														"searching": true,
+														"ordering": false,
+														"info": false,
+														"autoWidth": true,
+														"button": false,
+														"lengthMenu": [[5, 10, 25, 50, 100, -1], ["5", "10", "25", "50", "100", "All"]],
+														"pageLength": -1,
+														"dom": '<"top text-center"BLipf>rt<"bottom"><"clear">',
+
+														fixedHeader: true,
+														orderCellsTop: true,
+														fixedHeader: {
+															headerOffset: 50
+														},
+														buttons: [
+															'colvis', {
+																extend: 'collection',
+																text: 'Export',
+																buttons: [
+																	{
+																		extend: 'copyHtml5',
+																		exportOptions: {
+																			columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+																		}
+																	},
+																	{
+																		extend: 'excelHtml5',
+																		exportOptions: {
+																			columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+																			format: {
+																				body: function (data, row, column, node) {
+																					return column === 3 || column === 5 || column === 6 || column === 7 || column === 8 || column === 4 ? "\0" + data : data;
+																				}
+																			}
+																		}
+																	},
+																],
+															}]
+													});
+
+													$('.dataTables_filter').addClass('pull-right');
+													$('.dataTables_paginate').addClass('pull-left');
+												});
+
+											</script>
+										</div>
+									</div>
+								</div> 
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</div>
+		<footer class="main-footer navbar-fixed-bottom">
+			<div class="col-lg-12">
+				<strong>Perencanaan Universitas Jendral Soedirman &copy; 2025. <b>V1</b></strong>
+				<div class="pull-right">
+					email: <strong>simonevgaruda@unsoed.ac.id</strong> || phone: <strong>(0281) 5704006</strong>
+				</div>
+			</div>
+		</footer>
+	</div>
+</body>
+
+</html>
+
+<script>
+	window.onload = function () {
+		if (window.location !== window.top.location) {
+			window.top.location = window.location;
+		}
+	}
+</script>
