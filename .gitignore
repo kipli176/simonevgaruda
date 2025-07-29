@@ -1,5 +1,5 @@
 *.ipynb
 *.xlsx
-tex.py
+tes.py
 templates/index.html
 *.zip
